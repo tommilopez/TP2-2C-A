@@ -5,7 +5,7 @@ John trabaja en una tienda de medias. Tiene una larga pila de medias que tiene q
 > #### Ejemplo de entrada
 > 9
 > 
-> 10 20 20 20 20 30 50 10 20
+>  [10, 20, 20, 20, 20, 30, 50, 10, 20]
 
 > #### Ejemplo de salida
 > 3
