@@ -28,3 +28,40 @@ const str = `<ul>
 // Fecha de solucio: Miercoles 2 de SEP
 
 // Modalidad de entrega. Pull Request.
+
+function getObjectVideos(str){
+  return str
+    .replace('<ul>','')
+    .replace('</ul>', '')
+    .split('</li>')
+    .slice(0, -1)
+    .map(video => (
+      {
+        duracion: video
+          .split('"')[1],
+        tipo: video
+          .split('>')[1]
+      }
+    ))
+    .map(video => (
+      {
+        duracion: video.duracion
+          .split(':'),
+        tipo: video.tipo
+      }))
+    .map(video => (
+      {
+        duracion: parseInt(video.duracion[1]) + parseInt(video.duracion[0])*60,
+        tipo: video.tipo
+      }
+    ))
+    .filter(video => video.tipo == 'Redux Video')
+    .reduce((anterior, actual) => ({duracion: anterior.duracion + actual.duracion}))
+    .duracion;
+    
+}
+
+//[1,2,3,5].reduce((anterior, actual) => anterior + actual); 
+
+//console.log(getObjectVideos(str));
+console.log(getObjectVideos(str) === 1847);
