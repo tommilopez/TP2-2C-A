@@ -7,31 +7,37 @@ const chalk = require('chalk');
 const app = express();
 const PORT = 3000;
 
-app.use('/', (req, res, next) => {
-    console.log('Paso por el middleware /');
-    next();
-});
+// app.use('/', (req, res, next) => {
+//     console.log('Paso por el middleware /');
+//     next();
+// });
 
-app.use('/', (req, res, next)=>{
-    if(req.query.token == 'abcde123'){
-        next();
-    } else {
-        res.status(401).send('login fail');
-    }
-});
+// app.use('/', (req, res, next)=>{
+//     if(req.query.token == 'abcde123'){
+//         next();
+//     } else {
+//         res.status(401).send('login fail');
+//     }
+// });
+
+app.use('/public', express.static('./public'));
 
 app.get('/', (req, res) =>{
     console.log('Paso por app.get');
 
     res.send(`
         <html>
-            <head></head>
+            <head>
+                <link href="public/style.css" type="text/css" rel="stylesheet">
+            </head>
             <body>
                 <h1>Hola mundo</h1>
             </body>
         </html>
     `);
 });
+
+
 
 
 
